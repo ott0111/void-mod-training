@@ -1,1 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Certification Exam — Void Mod Training</title>
+  <link rel="stylesheet" href="../src/css/style.css" />
+</head>
+<body class="dark">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../src/assets/logo.svg" alt="Void Esports" class="logo" />
+      <div class="title">Certification Exam</div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="training.html">Learn</a>
+      <a href="practice-quiz.html">Practice</a>
+    </nav>
+  </header>
 
+  <main class="container">
+    <section class="glass content" id="cert-root">
+      <h2>Certification Exam</h2>
+      <p class="muted">20 scenario-based questions. Anti-cheat enabled. Do not refresh or open multiple tabs.</p>
+      <div id="cert-timer" class="timer">Time: <span id="time-left">—</span></div>
+      <div id="cert-questions"></div>
+      <div class="quiz-controls">
+        <button id="cert-prev" class="btn">Previous</button>
+        <button id="cert-next" class="btn primary">Next</button>
+        <button id="cert-submit" class="btn neon">Submit Exam</button>
+      </div>
+      <div id="cert-result" class="result"></div>
+    </section>
+  </main>
+
+  <footer class="footer">Made by Nicks Cold</footer>
+  <script type="module" src="../src/js/supabase.js"></script>
+  <script type="module" src="../src/js/certification.js"></script>
+</body>
+</html>

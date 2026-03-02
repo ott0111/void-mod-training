@@ -1,1 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Practice Quiz — Void Mod Training</title>
+  <link rel="stylesheet" href="../src/css/style.css" />
+</head>
+<body class="dark">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../src/assets/logo.svg" alt="Void Esports" class="logo" />
+      <div class="title">Practice Quiz</div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="training.html">Learn</a>
+      <a href="certification.html">Certification</a>
+    </nav>
+  </header>
 
+  <main class="container">
+    <section class="glass content" id="quiz-root">
+      <h2>Practice Quiz</h2>
+      <div id="quiz-meta">30 randomized multiple-choice questions. Pass at 70% to unlock certification.</div>
+      <div id="question-area"></div>
+      <div class="quiz-controls">
+        <button id="prev-btn" class="btn">Previous</button>
+        <button id="next-btn" class="btn primary">Next</button>
+        <button id="submit-btn" class="btn neon">Submit</button>
+      </div>
+      <div id="quiz-result" class="result"></div>
+    </section>
+  </main>
+
+  <footer class="footer">Made by Nicks Cold</footer>
+  <script type="module" src="../src/js/supabase.js"></script>
+  <script type="module" src="../src/js/quiz.js"></script>
+</body>
+</html>

@@ -15,94 +15,169 @@ const QuizPage = ({ user }) => {
 
   const quizQuestions = [
     {
-      question: "What is the primary purpose of a General Ticket?",
+      question: "A user submits a roster ticket but is under 13 years old. What is the FIRST action you should take?",
       options: [
-        "User applications for joining Void Esports",
-        "Community support inquiries and reporting issues",
-        "Staff internal communications",
-        "Tournament registrations"
+        "Immediately assign them to Grinder+ role",
+        "Politely inform them they don't qualify and suggest Grinder+",
+        "Ask for parental permission to proceed",
+        "Forward to senior staff for age verification exception"
       ],
       correct: 1,
       category: "Ticket Types"
     },
     {
-      question: "How should you handle a Roster Ticket?",
+      question: "Which command should be used when a user repeatedly violates community guidelines after multiple warnings?",
       options: [
-        "Direct them to the tournament team",
-        "Include age verification and direct to appropriate resources",
-        "Immediately assign roles without verification",
-        "Escalate to senior staff only"
-      ],
-      correct: 1,
-      category: "Ticket Types"
-    },
-    {
-      question: "What should all ticket responses begin with?",
-      options: [
-        "Informal greetings like 'Yo' or 'Bro'",
-        "Professional greeting and age inquiry",
-        "Immediate role assignment",
-        "A warning about rules"
-      ],
-      correct: 1,
-      category: "Ticket Types"
-    },
-    {
-      question: "What Power Ranking is required for Pro Roster?",
-      options: ["10,000+", "15,000+", "25,000+", "50,000+"],
-      correct: 2,
-      category: "Roster Categories"
-    },
-    {
-      question: "What earnings threshold is required for Pro Roster?",
-      options: ["$500+", "No earnings required", "$1,000+", "$5,000+"],
-      correct: 2,
-      category: "Roster Categories"
-    },
-    {
-      question: "Where should /warn commands be used exclusively?",
-      options: [
-        "In direct messages to users",
-        "In #staff-commands channel",
-        "In public channels",
-        "In #general channel"
+        "/warn @user Repeated violations",
+        "/report @user Repeated rule violations - needs staff review",
+        "/ban @user Repeated violations",
+        "/kick @user Final warning"
       ],
       correct: 1,
       category: "Mod Commands"
     },
     {
-      question: "When should you use /report instead of /warn?",
+      question: "A user applies for Pro Roster with 24,000 Power Ranking but only $800 in earnings. What should you do?",
       options: [
-        "For all infractions",
-        "Only for minor rule violations",
-        "For major or repeated infractions",
-        "Never use /report"
+        "Accept them since they're close to the PR requirement",
+        "Reject them immediately for not meeting earnings threshold",
+        "Inform them they need both 25,000+ PR AND $1,000+ earnings",
+        "Ask them to provide additional tournament results"
       ],
       correct: 2,
-      category: "Mod Commands"
+      category: "Roster Categories"
     },
     {
-      question: "What is the minimum weekly ticket requirement?",
-      options: ["5 tickets", "10 tickets", "20 tickets", "50 tickets"],
-      correct: 2,
+      question: "What is the correct response format when a user applies for Content Creator role?",
+      options: [
+        "Show me your social media accounts now",
+        "Perfect! Please link your social media accounts below and @Content Department will review them shortly!",
+        "You need 1k followers on Twitch/YouTube and 10k on TikTok",
+        "Let me check your follower count real quick"
+      ],
+      correct: 1,
+      category: "Role Instructions"
+    },
+    {
+      question: "A user has been inactive for 2 weeks and wants to return. What should you do?",
+      options: [
+        "Welcome them back and restore their roles immediately",
+        "Check their LOA status and performance before departure",
+        "Require them to retake the certification quiz",
+        "Ask them to reapply from scratch"
+      ],
+      correct: 1,
       category: "Performance Metrics"
     },
     {
-      question: "How many messages are required weekly?",
-      options: ["100", "200", "400", "1000"],
-      correct: 2,
-      category: "Performance Metrics"
-    },
-    {
-      question: "What type of greetings should be avoided?",
+      question: "Which greeting is MOST appropriate for a general support ticket?",
       options: [
-        "Professional greetings",
-        "Friendly greetings",
-        "Informal responses like 'Yo', 'Hi', 'Bro'",
-        "Polite inquiries"
+        "Yo what's up?",
+        "Hi there, how may I help you today?",
+        "Sup bro, need help?",
+        "What do you want?"
       ],
-      correct: 2,
+      correct: 1,
       category: "Guidelines"
+    },
+    {
+      question: "A user claims to be a coach but can't provide student success stories. What should you do?",
+      options: [
+        "Accept them anyway since coaching is subjective",
+        "Ask for alternative proof like coaching methodology",
+        "Politely explain they need verifiable student results",
+        "Give them a trial period to prove their coaching ability"
+      ],
+      correct: 2,
+      category: "Role Instructions"
+    },
+    {
+      question: "What is the MINIMUM weekly message requirement for moderators?",
+      options: [
+        "100 messages per week",
+        "200 messages per week", 
+        "400 messages per week",
+        "500 messages per week"
+      ],
+      correct: 2,
+      category: "Performance Metrics"
+    },
+    {
+      question: "When should you use the /report command instead of /warn?",
+      options: [
+        "For all rule violations",
+        "Only for spam messages",
+        "For major or repeated infractions that need staff review",
+        "Never - always use /warn"
+      ],
+      correct: 2,
+      category: "Mod Commands"
+    },
+    {
+      question: "A user wants to join Void VFX but their work is 1080p. What should you tell them?",
+      options: [
+        "1080p is fine, send your portfolio",
+        "We need 1440p or higher quality work for Void VFX",
+        "Let me make an exception for you",
+        "Try Void GFX instead"
+      ],
+      correct: 1,
+      category: "Roster Categories"
+    },
+    {
+      question: "What is the proper format for documenting an LOA (Leave of Application)?",
+      options: [
+        "User: Name, Reason: Away, Time: 1 week",
+        "User : ———-, Role : ———-, Start Time : ———-, End Time : ———-, Reason : ———-",
+        "LOA: User away from date to date",
+        "Away: User, Role, Dates, Reason"
+      ],
+      correct: 1,
+      category: "Mod Commands"
+    },
+    {
+      question: "A user applies for Academy Roster with 4,500 Power Ranking. What should you do?",
+      options: [
+        "Accept them since they're close to 5,000",
+        "Reject them for not meeting the 5,000+ PR requirement",
+        "Ask them to provide recent gameplay showing improvement",
+        "Place them in trial academy to evaluate"
+      ],
+      correct: 1,
+      category: "Roster Categories"
+    },
+    {
+      question: "Which of these is NOT a valid reason to immediately escalate a ticket to senior staff?",
+      options: [
+        "User threatening self-harm",
+        "User reporting a bug in the system",
+        "User harassing other members",
+        "User attempting to exploit the system"
+      ],
+      correct: 1,
+      category: "Guidelines"
+    },
+    {
+      question: "What should you do if a user disputes their quiz results?",
+      options: [
+        "Ignore their dispute - the system is always correct",
+        "Review their specific answers and provide feedback",
+        "Immediately let them retake the quiz",
+        "Forward to admin for manual review"
+      ],
+      correct: 1,
+      category: "Performance Metrics"
+    },
+    {
+      question: "A Streamer applicant has 800 followers on Twitch but 15k on TikTok. Do they qualify?",
+      options: [
+        "Yes - TikTok followers count more",
+        "No - they need 1,000+ on Twitch/YouTube specifically",
+        "Yes - combined followers exceed requirements",
+        "No - they need both platform requirements"
+      ],
+      correct: 1,
+      category: "Roster Categories"
     }
   ];
 
@@ -342,91 +417,141 @@ const QuizPage = ({ user }) => {
     const progress = ((currentQuestion + 1) / quiz.length) * 100;
 
     return (
-      <div className="max-w-4xl mx-auto">
-        <div className="glass-card-lg p-8">
-          {/* Progress Bar */}
-          <div className="mb-6">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-400">Question {currentQuestion + 1} of {quiz.length}</span>
-              <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-void-purple-400" />
-                <span className={`text-sm font-medium ${timeLeft < 60 ? 'text-red-400 animate-pulse' : 'text-void-purple-400'}`}>
+      <div className="max-w-5xl mx-auto">
+        <div className="glass-card-lg p-8 relative overflow-hidden">
+          {/* Animated background gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-void-purple-600/5 via-transparent to-void-purple-400/5 pointer-events-none" />
+          
+          {/* Progress Section */}
+          <div className="mb-8 relative">
+            <div className="flex justify-between items-center mb-4">
+              <div className="flex items-center space-x-3">
+                <div className="text-sm font-medium text-gray-400">Question</div>
+                <div className="text-2xl font-bold gradient-text">
+                  {currentQuestion + 1} <span className="text-gray-400">of {quiz.length}</span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Clock className={`w-5 h-5 ${timeLeft < 60 ? 'text-red-400 animate-pulse' : 'text-void-purple-400'}`} />
+                <span className={`text-lg font-mono font-medium ${timeLeft < 60 ? 'text-red-400 animate-pulse' : 'text-void-purple-400'}`}>
                   {formatTime(timeLeft)}
                 </span>
               </div>
             </div>
-            <div className="w-full bg-white/10 rounded-full h-2">
+            
+            {/* Enhanced Progress Bar */}
+            <div className="progress-bar h-4 relative">
               <div 
-                className="bg-gradient-to-r from-void-purple-600 to-void-purple-400 h-2 rounded-full transition-all duration-300"
+                className="absolute inset-0 bg-gradient-to-r from-void-purple-600 to-void-purple-400 rounded-full transition-all duration-500 ease-out"
                 style={{ width: `${progress}%` }}
-              />
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse" />
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-xs font-medium text-white/80">{Math.round(progress)}%</span>
+              </div>
             </div>
           </div>
 
-          {/* Question */}
+          {/* Question Card */}
           <motion.div
             key={currentQuestion}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 50, scale: 0.95 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -50, scale: 0.95 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 300, 
+              damping: 30,
+              duration: 0.5
+            }}
             className="mb-8"
           >
-            <div className="mb-4">
-              <span className="text-sm text-void-purple-400 font-medium">{question.category}</span>
+            <div className="glass-card-lg p-8 text-center relative">
+              {/* Category Badge */}
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-void-purple-600/20 to-void-purple-500/20 border border-void-purple-400/30 mb-6">
+                <span className="text-sm font-medium text-void-purple-300">{question.category}</span>
+              </div>
+              
+              {/* Question Text */}
+              <h2 className="text-3xl font-bold text-white mb-8 leading-relaxed">
+                {question.question}
+              </h2>
             </div>
-            <h2 className="text-2xl font-bold text-white mb-6">{question.question}</h2>
+          </motion.div>
 
-            {/* Options */}
-            <div className="space-y-3">
-              {question.options.map((option, index) => (
-                <motion.button
-                  key={index}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+          {/* Answer Options */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            {question.options.map((option, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <button
                   onClick={() => selectAnswer(index)}
-                  className={`quiz-option w-full text-left p-4 ${
+                  className={`quiz-option w-full text-left p-6 relative group ${
                     answers[currentQuestion] === index ? 'selected' : ''
                   }`}
                 >
-                  <div className="flex items-center space-x-3">
-                    <div className={`w-5 h-5 rounded-full border-2 ${
+                  <div className="flex items-center space-x-4">
+                    {/* Option Indicator */}
+                    <div className={`w-6 h-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center ${
                       answers[currentQuestion] === index
                         ? 'border-void-purple-400 bg-void-purple-400'
-                        : 'border-gray-400'
+                        : 'border-gray-400 group-hover:border-void-purple-400'
                     }`}>
                       {answers[currentQuestion] === index && (
-                        <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                          <div className="w-2 h-2 bg-void-purple-600 rounded-full" />
-                        </div>
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          className="w-2 h-2 bg-white rounded-full"
+                        />
                       )}
                     </div>
-                    <span className="text-white">{option}</span>
+                    
+                    {/* Option Text */}
+                    <span className="text-lg text-white group-hover:text-void-purple-200 transition-colors">
+                      {option}
+                    </span>
                   </div>
-                </motion.button>
-              ))}
-            </div>
-          </motion.div>
+                  
+                  {/* Hover Effect */}
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-void-purple-600/10 to-void-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </button>
+              </motion.div>
+            ))}
+          </div>
 
           {/* Navigation */}
           <div className="flex justify-between items-center">
             <button
               onClick={previousQuestion}
               disabled={currentQuestion === 0}
-              className="glass-card px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-transform"
+              className="glass-card px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 transition-all duration-300 flex items-center space-x-2"
             >
-              Previous
+              <ChevronLeft className="w-5 h-5" />
+              <span>Previous</span>
             </button>
             
-            <div className="flex space-x-2">
+            {/* Question Dots */}
+            <div className="flex space-x-3">
               {quiz.map((_, index) => (
-                <div
+                <motion.button
                   key={index}
-                  className={`w-2 h-2 rounded-full ${
+                  onClick={() => setCurrentQuestion(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentQuestion
-                      ? 'bg-void-purple-400'
+                      ? 'bg-void-purple-400 shadow-void-glow scale-125'
                       : answers[index] !== null
-                      ? 'bg-void-purple-600'
-                      : 'bg-gray-600'
+                      ? 'bg-void-purple-600/60 hover:bg-void-purple-600/80'
+                      : 'bg-gray-600 hover:bg-gray-500'
                   }`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.8 }}
                 />
               ))}
             </div>
@@ -434,9 +559,10 @@ const QuizPage = ({ user }) => {
             <button
               onClick={nextQuestion}
               disabled={answers[currentQuestion] === null}
-              className="neon-button px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="neon-button px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 text-lg font-semibold"
             >
-              {currentQuestion === quiz.length - 1 ? 'Submit' : 'Next'}
+              <span>{currentQuestion === quiz.length - 1 ? 'Submit Quiz' : 'Next'}</span>
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>

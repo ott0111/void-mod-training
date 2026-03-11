@@ -7,102 +7,182 @@ const quizQuestions = [
   {
     id: 1,
     category: "Ticket Types",
-    question: "What is the primary purpose of a General Ticket?",
+    question: "A user submits a roster ticket but is under 13 years old. What is the FIRST action you should take?",
     options: [
-      "User applications for joining Void Esports",
-      "Community support inquiries and reporting issues",
-      "Staff internal communications",
-      "Tournament registrations"
+      "Immediately assign them to Grinder+ role",
+      "Politely inform them they don't qualify and suggest Grinder+",
+      "Ask for parental permission to proceed",
+      "Forward to senior staff for age verification exception"
     ],
     correct: 1
   },
   {
     id: 2,
-    category: "Ticket Types",
-    question: "How should you handle a Roster Ticket?",
+    category: "Mod Commands",
+    question: "Which command should be used when a user repeatedly violates community guidelines after multiple warnings?",
     options: [
-      "Direct them to the tournament team",
-      "Include age verification and direct to appropriate resources",
-      "Immediately assign roles without verification",
-      "Escalate to senior staff only"
+      "/warn @user Repeated violations",
+      "/report @user Repeated rule violations - needs staff review",
+      "/ban @user Repeated violations",
+      "/kick @user Final warning"
     ],
     correct: 1
   },
   {
     id: 3,
-    category: "Ticket Types",
-    question: "What should all ticket responses begin with?",
+    category: "Roster Categories",
+    question: "A user applies for Pro Roster with 24,000 Power Ranking but only $800 in earnings. What should you do?",
     options: [
-      "Informal greetings like 'Yo' or 'Bro'",
-      "Professional greeting and age inquiry",
-      "Immediate role assignment",
-      "A warning about rules"
+      "Accept them since they're close to the PR requirement",
+      "Reject them immediately for not meeting earnings threshold",
+      "Inform them they need both 25,000+ PR AND $1,000+ earnings",
+      "Ask them to provide additional tournament results"
+    ],
+    correct: 2
+  },
+  {
+    id: 4,
+    category: "Role Instructions",
+    question: "What is the correct response format when a user applies for Content Creator role?",
+    options: [
+      "Show me your social media accounts now",
+      "Perfect! Please link your social media accounts below and @Content Department will review them shortly!",
+      "You need 1k followers on Twitch/YouTube and 10k on TikTok",
+      "Let me check your follower count real quick"
     ],
     correct: 1
   },
   {
-    id: 4,
-    category: "Roster Categories",
-    question: "What Power Ranking is required for Pro Roster?",
-    options: ["10,000+", "15,000+", "25,000+", "50,000+"],
-    correct: 2
-  },
-  {
     id: 5,
-    category: "Roster Categories",
-    question: "What earnings threshold is required for Pro Roster?",
-    options: ["$500+", "No earnings required", "$1,000+", "$5,000+"],
-    correct: 2
+    category: "Performance Metrics",
+    question: "A user has been inactive for 2 weeks and wants to return. What should you do?",
+    options: [
+      "Welcome them back and restore their roles immediately",
+      "Check their LOA status and performance before departure",
+      "Require them to retake the certification quiz",
+      "Ask them to reapply from scratch"
+    ],
+    correct: 1
   },
   {
     id: 6,
-    category: "Mod Commands",
-    question: "Where should /warn commands be used exclusively?",
+    category: "Guidelines",
+    question: "Which greeting is MOST appropriate for a general support ticket?",
     options: [
-      "In direct messages to users",
-      "In #staff-commands channel",
-      "In public channels",
-      "In #general channel"
+      "Yo what's up?",
+      "Hi there, how may I help you today?",
+      "Sup bro, need help?",
+      "What do you want?"
     ],
     correct: 1
   },
   {
     id: 7,
-    category: "Mod Commands",
-    question: "When should you use /report instead of /warn?",
+    category: "Role Instructions",
+    question: "A user claims to be a coach but can't provide student success stories. What should you do?",
     options: [
-      "For all infractions",
-      "Only for minor rule violations",
-      "For major or repeated infractions",
-      "Never use /report"
+      "Accept them anyway since coaching is subjective",
+      "Ask for alternative proof like coaching methodology",
+      "Politely explain they need verifiable student results",
+      "Give them a trial period to prove their coaching ability"
     ],
     correct: 2
   },
   {
     id: 8,
     category: "Performance Metrics",
-    question: "What is the minimum weekly ticket requirement?",
-    options: ["5 tickets", "10 tickets", "20 tickets", "50 tickets"],
+    question: "What is the MINIMUM weekly message requirement for moderators?",
+    options: [
+      "100 messages per week",
+      "200 messages per week", 
+      "400 messages per week",
+      "500 messages per week"
+    ],
     correct: 2
   },
   {
     id: 9,
-    category: "Performance Metrics",
-    question: "How many messages are required weekly?",
-    options: ["100", "200", "400", "1000"],
+    category: "Mod Commands",
+    question: "When should you use the /report command instead of /warn?",
+    options: [
+      "For all rule violations",
+      "Only for spam messages",
+      "For major or repeated infractions that need staff review",
+      "Never - always use /warn"
+    ],
     correct: 2
   },
   {
     id: 10,
-    category: "Guidelines",
-    question: "What type of greetings should be avoided?",
+    category: "Roster Categories",
+    question: "A user wants to join Void VFX but their work is 1080p. What should you tell them?",
     options: [
-      "Professional greetings",
-      "Friendly greetings",
-      "Informal responses like 'Yo', 'Hi', 'Bro'",
-      "Polite inquiries"
+      "1080p is fine, send your portfolio",
+      "We need 1440p or higher quality work for Void VFX",
+      "Let me make an exception for you",
+      "Try Void GFX instead"
     ],
-    correct: 2
+    correct: 1
+  },
+  {
+    id: 11,
+    category: "Mod Commands",
+    question: "What is the proper format for documenting an LOA (Leave of Application)?",
+    options: [
+      "User: Name, Reason: Away, Time: 1 week",
+      "User : ———-, Role : ———-, Start Time : ———-, End Time : ———-, Reason : ———-",
+      "LOA: User away from date to date",
+      "Away: User, Role, Dates, Reason"
+    ],
+    correct: 1
+  },
+  {
+    id: 12,
+    category: "Roster Categories",
+    question: "A user applies for Academy Roster with 4,500 Power Ranking. What should you do?",
+    options: [
+      "Accept them since they're close to 5,000",
+      "Reject them for not meeting the 5,000+ PR requirement",
+      "Ask them to provide recent gameplay showing improvement",
+      "Place them in trial academy to evaluate"
+    ],
+    correct: 1
+  },
+  {
+    id: 13,
+    category: "Guidelines",
+    question: "Which of these is NOT a valid reason to immediately escalate a ticket to senior staff?",
+    options: [
+      "User threatening self-harm",
+      "User reporting a bug in the system",
+      "User harassing other members",
+      "User attempting to exploit the system"
+    ],
+    correct: 1
+  },
+  {
+    id: 14,
+    category: "Performance Metrics",
+    question: "What should you do if a user disputes their quiz results?",
+    options: [
+      "Ignore their dispute - the system is always correct",
+      "Review their specific answers and provide feedback",
+      "Immediately let them retake the quiz",
+      "Forward to admin for manual review"
+    ],
+    correct: 1
+  },
+  {
+    id: 15,
+    category: "Roster Categories",
+    question: "A Streamer applicant has 800 followers on Twitch but 15k on TikTok. Do they qualify?",
+    options: [
+      "Yes - TikTok followers count more",
+      "No - they need 1,000+ on Twitch/YouTube specifically",
+      "Yes - combined followers exceed requirements",
+      "No - they need both platform requirements"
+    ],
+    correct: 1
   }
 ];
 

@@ -51,30 +51,90 @@ const Home = ({ user }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="glass-card-lg p-8 text-center ambient-glow"
+        className="glass-card-lg p-12 text-center ambient-glow relative overflow-hidden"
       >
-        <div className="mb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-void-purple-600 to-void-purple-400 rounded-2xl mb-4">
-            <Shield className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-5xl font-bold gradient-text mb-4 animate-float">
+        {/* Animated background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-void-purple-600/10 via-transparent to-void-purple-400/10 pointer-events-none" />
+        
+        <div className="relative z-10">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="mb-8"
+          >
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-void-purple-600 to-void-purple-400 rounded-3xl mb-6 shadow-void-glow-lg float-animation">
+              <Shield className="w-10 h-10 text-white" />
+            </div>
+          </motion.div>
+          
+          <motion.h1
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-6xl font-bold gradient-text mb-6 float-animation-slow"
+          >
             Welcome to Void Mod Training
-          </h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          </motion.h1>
+          
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          >
             Become a certified Void Esports moderator through our comprehensive training program
-          </p>
+          </motion.p>
+          
+          {/* Training Path */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-10"
+          >
+            {[
+              { step: 'Learn', icon: BookOpen, delay: 0.6 },
+              { step: 'Practice', icon: Target, delay: 0.7 },
+              { step: 'Complete', icon: Award, delay: 0.8 }
+            ].map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.step}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: item.delay, duration: 0.6 }}
+                  className="flex items-center space-x-3"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-r from-void-purple-600/20 to-void-purple-500/20 rounded-xl flex items-center justify-center border border-void-purple-400/30">
+                    <Icon className="w-6 h-6 text-void-purple-300" />
+                  </div>
+                  <span className="text-lg font-semibold text-white">{item.step}</span>
+                  {index < 2 && (
+                    <div className="hidden sm:block w-8 h-0.5 bg-gradient-to-r from-void-purple-400/50 to-transparent" />
+                  )}
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/training" className="neon-button inline-flex items-center space-x-2">
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.9, duration: 0.8 }}
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-12 relative z-10"
+        >
+          <Link to="/training" className="neon-button inline-flex items-center space-x-3 text-lg px-8 py-4 shadow-void-glow-lg">
             <span>Start Training</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-5 h-5" />
           </Link>
-          <Link to="/quiz" className="glass-card px-6 py-3 inline-flex items-center space-x-2 hover:scale-105 transition-transform">
-            <Target className="w-4 h-4" />
+          <Link to="/quiz" className="glass-card px-8 py-4 inline-flex items-center space-x-3 hover:scale-105 transition-all duration-300 text-lg">
+            <Target className="w-5 h-5" />
             <span>Take Quiz</span>
           </Link>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Stats Grid */}

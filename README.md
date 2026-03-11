@@ -1,35 +1,39 @@
 # Void Mod Training Platform
 
-A comprehensive esports moderator training system with modern React frontend and Node.js backend, featuring Discord integration preparation and optional Supabase database support.
+An enterprise-level esports moderator training and certification platform built with modern full-stack TypeScript architecture. Features a premium UI inspired by Stripe, Linear, and Vercel with Discord integration and comprehensive quiz system.
 
 ## 🚀 Features
 
-### Frontend (React)
-- **Premium Dark UI**: Futuristic purple neon theme with glassmorphism effects
-- **Interactive Dashboard**: Modern sidebar navigation with animated transitions
-- **Training Modules**: Comprehensive moderator training with exact content
-- **Internal Quiz System**: 10-question certification quiz with automatic grading
-- **Certification Management**: Track and display user achievements
-- **Admin Panel**: Manage trainees and view analytics
-- **Responsive Design**: Works seamlessly on desktop and mobile
+### Frontend (Next.js 14)
+- **Enterprise UI**: Premium dark futuristic design with purple gradient theme
+- **Glassmorphism**: Modern glass UI panels with backdrop blur effects
+- **Framer Motion**: Smooth animations and micro-interactions
+- **Discord Verification**: Server membership validation before quiz access
+- **Interactive Quiz**: 10-question certification with premium card UI
+- **Training Modules**: 8 comprehensive moderator training modules
+- **Responsive Design**: Fully responsive across all devices
+- **TypeScript**: Full type safety throughout the application
 
-### Backend (Node.js)
-- **RESTful API**: Clean, well-documented endpoints
+### Backend (Express.js)
+- **TypeScript Backend**: Modern Express.js with full type safety
+- **Discord API Integration**: Real Discord server verification
 - **Quiz System**: Question generation, grading, and attempt tracking
-- **User Management**: Profile management and certification tracking
-- **Admin Analytics**: Statistics and trainee management
-- **Rate Limiting**: Protection against abuse
-- **Security**: Input validation and error handling
+- **Rate Limiting**: Advanced protection against spam and abuse
+- **Security**: Input validation, CORS, and security headers
+- **Modular Architecture**: Clean separation of concerns
+- **API Documentation**: Well-structured RESTful endpoints
 
-### Integration Ready
-- **Discord Bot**: Prepared structure for role assignment
-- **Supabase**: Optional database integration
-- **Scalable Architecture**: Modular design for easy expansion
+### Integration Features
+- **Discord Bot Ready**: Complete role assignment system
+- **Supabase Support**: Optional database integration prepared
+- **JWT Authentication**: Secure session management
+- **Admin Dashboard**: Trainee management and analytics
 
 ## 🛠 Tech Stack
 
 ### Frontend
-- **React 18** - Modern UI framework
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Full type safety
 - **Tailwind CSS** - Utility-first styling with custom purple theme
 - **Framer Motion** - Smooth animations and transitions
 - **Lucide React** - Beautiful icon library
@@ -37,62 +41,128 @@ A comprehensive esports moderator training system with modern React frontend and
 
 ### Backend
 - **Node.js** - Runtime environment
-- **Express.js** - Web framework
+- **Express.js** - Web framework with TypeScript
+- **Discord.js** - Discord API integration
+- **JWT** - Authentication and session management
+- **Joi** - Input validation
+- **Winston** - Logging system
 - **Rate Limiting** - Abuse prevention
-- **Helmet.js** - Security headers
-- **Discord.js Ready** - Prepared for bot integration
 
 ## 📋 Project Structure
 
 ```
 void-mod-training/
-├── frontend/                 # React application
+├── frontend/                 # Next.js application
 │   ├── src/
-│   │   ├── components/     # Reusable UI components
-│   │   ├── pages/          # Page components
+│   │   ├── app/             # Next.js App Router
+│   │   │   ├── page.tsx    # Landing page
+│   │   │   ├── verification/ # Discord verification
+│   │   │   ├── quiz/        # Certification quiz
+│   │   │   ├── training/    # Training modules
+│   │   │   ├── layout.tsx   # Root layout
+│   │   │   └── globals.css  # Global styles
+│   │   ├── components/      # Reusable UI components
+│   │   ├── ui/             # UI primitives
+│   │   ├── animations/     # Animation utilities
+│   │   ├── hooks/          # Custom React hooks
 │   │   ├── services/       # API services
-│   │   └── styles/         # Global styles
-│   ├── public/
-│   └── package.json
-├── backend/                 # Node.js API
-│   ├── routes/            # API routes
-│   ├── services/          # Business logic (prepared)
-│   ├── discord/           # Discord integration (prepared)
-│   ├── quiz/              # Quiz system
-│   └── server.js
+│   │   └── styles/         # Style utilities
+│   ├── package.json
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── next.config.js
+├── backend/                 # Express.js API
+│   ├── src/
+│   │   ├── server.ts       # Main server file
+│   │   ├── routes/         # API routes
+│   │   │   ├── auth.ts     # Authentication
+│   │   │   ├── discord.ts  # Discord verification
+│   │   │   ├── quiz.ts     # Quiz system
+│   │   │   ├── training.ts # Training content
+│   │   │   └── admin.ts    # Admin dashboard
+│   │   ├── services/       # Business logic
+│   │   ├── discord/        # Discord integration
+│   │   ├── quiz/           # Quiz questions & logic
+│   │   ├── middleware/     # Express middleware
+│   │   └── utils/          # Utility functions
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .env.example
+├── shared/                  # Shared TypeScript types
+│   └── types/
+│       └── index.ts        # Type definitions
 ├── README.md
 └── .gitignore
 ```
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Node.js 16+ installed
-- npm or yarn package manager
+### ⚠️ Important Note
+If you see TypeScript errors in your IDE (like "Cannot find module 'react'"), this is **normal** - the dependencies just need to be installed first. See [INSTALL.md](./INSTALL.md) for detailed instructions.
 
-### Frontend Setup
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
+- Discord Bot Token (for verification)
+
+### 1. Install Dependencies
 
 ```bash
+# Frontend
 cd frontend
 npm install
-cp .env.example .env
-# Edit .env with your Supabase credentials (optional)
-npm start
+
+# Backend  
+cd ../backend
+npm install
 ```
 
-The frontend will be available at `http://localhost:3000`
-
-### Backend Setup
+### 2. Configure Environment
 
 ```bash
-cd backend
-npm install
+# In backend directory
 cp .env.example .env
-# Edit .env with your configuration
-npm start
+# Edit .env with your Discord credentials
 ```
 
-The backend API will be available at `http://localhost:3001`
+### 3. Start Development Servers
+
+```bash
+# Terminal 1 - Backend
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend
+cd frontend
+npm run dev
+```
+
+### 4. Access Application
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:3001
+- Health Check: http://localhost:3001/health
+
+### Discord Configuration
+
+1. **Create Discord Application**
+   - Go to Discord Developer Portal
+   - Create new application with bot
+   - Enable Server Members Intent
+
+2. **Environment Variables**
+```env
+DISCORD_BOT_TOKEN=your_bot_token_here
+DISCORD_CLIENT_ID=your_client_id_here
+DISCORD_GUILD_ID=your_server_id_here
+DISCORD_CLIENT_SECRET=your_client_secret_here
+```
+
+3. **Role IDs (Optional)**
+```env
+ROLE_TRIAL_MOD_ID=trial_mod_role_id
+ROLE_STAFF_ACCESS_ID=staff_access_role_id
+ROLE_TICKET_SUPPORT_ID=ticket_support_role_id
+```
 
 ## 📚 Training Content
 

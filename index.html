@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Void Mod Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'void-purple': '#6d28d9',
+                        'void-purple-light': '#7c3aed',
+                        'void-purple-medium': '#8b5cf6',
+                        'void-purple-lighter': '#a78bfa',
+                        'void-purple-fade': '#c4b5fd',
+                        'void-dark': '#0f0f23',
+                        'void-darker': '#0a0a15',
+                        'void-light': '#a855f7',
+                        'void-neon': '#c084fc'
+                    },
+                    animation: {
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s ease-in-out infinite',
+                        'fade-in': 'fadeIn 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'gradient-shift': 'gradientShift 4s ease-in-out infinite',
+                        'particle-float': 'particleFloat 15s linear infinite',
+                        'ripple': 'ripple 0.6s ease-out',
+                        'tilt': 'tilt 0.3s ease-out',
+                        'reveal': 'reveal 0.8s ease-out forwards'
+                    },
+                    keyframes: {
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(139, 92, 246, 0.2)' },
+                            '100%': { boxShadow: '0 0 40px rgba(139, 92, 246, 0.8), 0 0 80px rgba(139, 92, 246, 0.4)' }
+                        },
+                        float: {
+                            '0%': { transform: 'translateY(0px) rotateX(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotateX(2deg)' },
+                            '100%': { transform: 'translateY(0px) rotateX(0deg)' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        gradientShift: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' }
+                        },
+                        particleFloat: {
+                            '0%': { transform: 'translateY(100vh) translateX(0) rotate(0deg)', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { transform: 'translateY(-100vh) translateX(100px) rotate(360deg)', opacity: '0' }
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0)', opacity: '1' },
+                            '100%': { transform: 'scale(4)', opacity: '0' }
+                        },
+                        tilt: {
+                            '0%': { transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg)' },
+                            '100%': { transform: 'perspective(1000px) rotateX(2deg) rotateY(2deg)' }
+                        },
+                        reveal: {
+                            '0%': { width: '0%', opacity: '0' },
+                            '100%': { width: '100%', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Global gradient background */
+        body {
+            background: linear-gradient(135deg, #0a0a15 0%, #0f0f23 25%, #1a1a2e 50%, #0f0f23 75%, #0a0a15 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Particle container */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+
+        /* Glassmorphism panels */
+        .glass-panel {
+            background: rgba(15, 15, 35, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 
+                0 8px 32px rgba(139, 92, 246, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient borders */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6, #c4b5fd);
+            padding: 1px;
+            border-radius: 12px;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6, #c4b5fd);
+            border-radius: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+        }
+
+        /* Premium cards */
+        .premium-card {
+            background: rgba(15, 15, 35, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.1), rgba(139, 92, 246, 0.1), rgba(196, 181, 253, 0.1));
+            border-radius: inherit;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(139, 92, 246, 0.3),
+                0 0 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .premium-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Enhanced sidebar */
+        .sidebar-item {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .sidebar-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .sidebar-item:hover::before {
+            left: 100%;
+        }
+
+        .sidebar-item:hover {
+            background: linear-gradient(90deg, rgba(109, 40, 217, 0.15) 0%, transparent 100%);
+            border-left: 3px solid #8b5cf6;
+            padding-left: 13px;
+            transform: translateX(2px);
+        }
+
+        .active-section {
+            background: linear-gradient(90deg, rgba(109, 40, 217, 0.25) 0%, transparent 100%);
+            border-left: 3px solid #c4b5fd;
+            position: relative;
+        }
+
+        .active-section::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 60%;
+            background: linear-gradient(180deg, #8b5cf6, #c4b5fd);
+            border-radius: 2px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #6d28d9, #8b5cf6, #c4b5fd);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        .glow-text {
+            text-shadow: 
+                0 0 20px rgba(139, 92, 246, 0.8),
+                0 0 40px rgba(139, 92, 246, 0.6),
+                0 0 60px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Premium buttons */
+        .premium-button {
+            background: linear-gradient(135deg, #6d28d9, #7c3aed, #8b5cf6);
+            background-size: 200% 200%;
+            animation: gradientShift 3s ease infinite;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .premium-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .premium-button:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 10px 40px rgba(139, 92, 246, 0.6),
+                0 0 60px rgba(139, 92, 246, 0.4);
+        }
+
+        .premium-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Section headers */
+        .section-header {
+            position: relative;
+            padding-bottom: 16px;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, #6d28d9, #8b5cf6, #c4b5fd);
+            animation: reveal 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        /* Staggered animations */
+        .stagger-fade-in {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        /* Enhanced scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 10, 21, 0.8);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #6d28d9, #8b5cf6);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #8b5cf6, #c4b5fd);
+        }
+
+        /* Ambient glow effects */
+        .ambient-glow {
+            position: relative;
+        }
+
+        .ambient-glow::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            right: -50px;
+            bottom: -50px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Progress path animation */
+        .progress-step {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .progress-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, transparent);
+            transform: translateY(-50%);
+        }
+
+        .progress-step:last-child::after {
+            display: none;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .premium-card:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+    <!-- Animated particles background -->
+    <div class="particles" id="particles"></div>
+    
+    <div class="flex h-screen relative z-10">
+        <!-- Enhanced Sidebar -->
+        <nav class="w-64 glass-panel overflow-y-auto">
+            <div class="p-6">
+                <h1 class="text-2xl font-bold gradient-text mb-8 animate-glow">Void Mod Training</h1>
+                <div class="space-y-2">
+                    <button onclick="showSection('overview')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="overview">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">📋</span>
+                            <span>Overview</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('tickets')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="tickets">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">🎫</span>
+                            <span>Ticket Types</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('roster')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="roster">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">👥</span>
+                            <span>Roster Categories</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('commands')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="commands">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">⚙️</span>
+                            <span>Mod Commands</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('metrics')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="metrics">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">📊</span>
+                            <span>Performance Metrics</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('guidelines')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="guidelines">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">📖</span>
+                            <span>Guidelines</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('roles')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="roles">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">🎭</span>
+                            <span>Role Instructions</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('closing')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="closing">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">✅</span>
+                            <span>Closing Tickets</span>
+                        </span>
+                    </button>
+                    <button onclick="showSection('certification')" class="sidebar-item w-full text-left p-3 rounded-lg" data-section="certification">
+                        <span class="flex items-center space-x-3">
+                            <span class="text-lg">🏆</span>
+                            <span>Certification</span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <div class="p-8">
+                <!-- Overview Section -->
+                <section id="overview" class="content-section">
+                    <div class="mb-8 ambient-glow">
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in">
+                            <h1 class="text-5xl font-bold gradient-text mb-6 animate-float section-header">
+                                Void Mod Training
+                            </h1>
+                            <div class="premium-card rounded-xl p-6 mb-8">
+                                <h2 class="text-2xl font-semibold text-void-purple-lighter mb-4 section-header">
+                                    <span class="flex items-center space-x-3">
+                                        <span class="text-3xl">🚀</span>
+                                        <span>Description:</span>
+                                    </span>
+                                </h2>
+                                <p class="text-gray-300 mb-6 leading-relaxed">
+                                    Comprehensive certification program for new Void Esports moderators. Master ticket handling, roster management, and community moderation through interactive scenarios and real-time testing.
+                                </p>
+                                <div class="flex items-center space-x-6">
+                                    <span class="text-xl font-semibold gradient-text">Training Path:</span>
+                                    <div class="flex space-x-3">
+                                        <div class="progress-step premium-card px-6 py-3 rounded-lg text-center">
+                                            <span class="font-semibold text-void-purple-lighter">Learn</span>
+                                        </div>
+                                        <span class="text-void-purple-medium self-center">→</span>
+                                        <div class="progress-step premium-card px-6 py-3 rounded-lg text-center">
+                                            <span class="font-semibold text-void-purple-lighter">Practice</span>
+                                        </div>
+                                        <span class="text-void-purple-medium self-center">→</span>
+                                        <div class="progress-step premium-card px-6 py-3 rounded-lg text-center">
+                                            <span class="font-semibold text-void-purple-lighter">Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ticket Types Section -->
+                <section id="tickets" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">🎫</span>
+                            <span>Ticket Types</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="premium-card rounded-2xl p-6 mb-8 stagger-fade-in">
+                        <p class="text-gray-300 leading-relaxed">
+                            Your first and foremost responsibility as a mod is to efficiently manage the ticket system in Void Esports. We operate with two primary ticket categories, each requiring specific handling protocols.
+                        </p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-1 ambient-glow">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-3xl">💬</span>
+                                    <span>General Ticket</span>
+                                </span>
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                These are created by community members for support inquiries, moderator assistance, or reporting issues. Handle with professionalism and follow escalation procedures for complex matters.
+                            </p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-2 ambient-glow">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-3xl">👥</span>
+                                    <span>Roster Ticket</span>
+                                </span>
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Application channel for users seeking to join Void Esports. Initial response must include age verification and direction to appropriate resources. Follow structured onboarding workflow.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-card rounded-2xl p-8 mt-8 stagger-fade-in stagger-3">
+                        <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                            <span class="flex items-center space-x-3">
+                                <span class="text-3xl">📋</span>
+                                <span>Protocol:</span>
+                            </span>
+                        </h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            All ticket responses should begin with professional greeting and age inquiry. Direct new applicants to the appropriate channels and maintain detailed records of all interactions.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Roster Categories Section -->
+                <section id="roster" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">👥</span>
+                            <span>Roster Categories & Requirements</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-1 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">🏆</span>
+                                    <span>Pro Roster</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• 25,000+ Power Ranking</li>
+                                <li>• $1,000+ in Official Fortnite Earnings</li>
+                                <li>• Place and earn consistently</li>
+                                <li>• Represent Us In Game and On Your Socials</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-2 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">🥈</span>
+                                    <span>Semi-Pro</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• 10,000–25,000 PR</li>
+                                <li>• Place Consistently</li>
+                                <li>• Represent us in Game</li>
+                                <li>• Use our Fortnite Code</li>
+                                <li>• Must have earnings</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-3 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎓</span>
+                                    <span>Academy Roster</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• 500–10,000 PR</li>
+                                <li>• Place Consistently</li>
+                                <li>• Represent us in Game</li>
+                                <li>• Use our Fortnite Code</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-4 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎨</span>
+                                    <span>Creative Roster</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• Smooth/Fast Mechanics</li>
+                                <li>• Must Be Unique</li>
+                                <li>• Must Be Able To Provide Clips When Asked</li>
+                                <li>• Represent Us In Game and On Your Socials</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-5 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">📺</span>
+                                    <span>Streamer</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• 1k+ Followers/Subscribers</li>
+                                <li>• Average 25+ Viewers Per Stream</li>
+                                <li>• Stream At Least 4x Per Week</li>
+                                <li>• Use Our Hashtags in Bio/Descriptions</li>
+                                <li>• Represent Us In Game and On Your Socials</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-6 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">📹</span>
+                                    <span>Content Creator</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• 1k Followers on Twitch/YouTube</li>
+                                <li>• 10k Followers on TikTok</li>
+                                <li>• Original/High Quality Posts</li>
+                                <li>• Willing to Help Out With Void Content</li>
+                                <li>• Must Post Actively</li>
+                                <li>• Represent Us In Game and On Your Socials</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-1 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎬</span>
+                                    <span>Junior Content Creator</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• 500+ Followers On Twitch/YouTube</li>
+                                <li>• 3k Followers On TikTok</li>
+                                <li>• Posts Are Original and High Quality</li>
+                                <li>• Willing To Grind to Become a Main Roster Content Creator</li>
+                                <li>• Represent Us In Game and On Your Socials</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-2 ambient-glow">
+                            <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-2xl">✨</span>
+                                    <span>GFX/VFX</span>
+                                </span>
+                            </h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• Experience With Editing</li>
+                                <li>• Portfolio Required</li>
+                                <li>• High-Quality Work (1440p or Higher)</li>
+                                <li>• Willing To Do Free Work For Staff/Roster</li>
+                                <li>• Deliver When Asked</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Mod Commands Section -->
+                <section id="commands" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">⚙️</span>
+                            <span>Mod Responsibilities & Commands</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-1 ambient-glow">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-3xl">⚠️</span>
+                                    <span>Warn / Report Command</span>
+                                </span>
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                Use /warn user-id reason command exclusively in the #staff-commands channel for minor rule violations. For major or repeated infractions, utilize the /report command with detailed documentation.
+                            </p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-2 ambient-glow">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-3xl">📅</span>
+                                    <span>LOA (Leave On Application)</span>
+                                </span>
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed mb-6">
+                                When unavailable due to illness or personal circumstances, use the /loa command with clear duration and reason. Prior notification to senior staff is mandatory for extended absences.
+                            </p>
+                            
+                            <div class="premium-card rounded-xl p-4">
+                                <h4 class="text-lg font-semibold gradient-text mb-3">NEW LOA FORMAT:</h4>
+                                <div class="space-y-2 text-gray-300 font-mono text-sm">
+                                    <p>User : ———-</p>
+                                    <p>Role : ———-</p>
+                                    <p>Start Time : ———-</p>
+                                    <p>End Time : ———-</p>
+                                    <p>Reason : ———-</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Metrics Section -->
+                <section id="metrics" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">📊</span>
+                            <span>Weekly Performance Metrics</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="premium-card rounded-2xl p-8 stagger-fade-in ambient-glow">
+                        <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                            Maintain minimum weekly thresholds to retain moderator status:
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4 p-4 premium-card rounded-xl">
+                                <span class="text-4xl animate-float">📋</span>
+                                <div>
+                                    <span class="text-xl font-semibold gradient-text">10 Tickets</span>
+                                    <p class="text-gray-400">Process support tickets</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-4 premium-card rounded-xl">
+                                <span class="text-4xl animate-float" style="animation-delay: 0.2s">💬</span>
+                                <div>
+                                    <span class="text-xl font-semibold gradient-text">400 Messages</span>
+                                    <p class="text-gray-400">Active community engagement</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-4 p-4 premium-card rounded-xl">
+                                <span class="text-4xl animate-float" style="animation-delay: 0.4s">🔐</span>
+                                <div>
+                                    <span class="text-xl font-semibold gradient-text">Login/Logout Commands</span>
+                                    <p class="text-gray-400">Documented moderator actions</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-6 premium-card rounded-xl border-l-4 border-red-500">
+                            <p class="text-red-300 font-semibold text-lg">
+                                ⚠️ Performance below these standards triggers review and possible demotion.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Guidelines Section -->
+                <section id="guidelines" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">📖</span>
+                            <span>Ticket Handling Guidelines</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="space-y-8">
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-1 ambient-glow">
+                            <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+                                Here is how you should proceed in tickets:
+                            </p>
+                            <div class="premium-card rounded-xl p-6 border-l-4 border-void-purple-medium">
+                                <p class="text-gray-200 italic text-lg">
+                                    Remember to be professional at all times. Refrain from using informal responses like "Yo", "Hi", "Bro". Always start with a friendly greeting.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-2 ambient-glow">
+                                <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                    <span class="flex items-center space-x-3">
+                                        <span class="text-2xl">👋</span>
+                                        <span>Professional Greetings</span>
+                                    </span>
+                                </h3>
+                                <p class="text-gray-300 mb-4">Start every interaction with a professional greeting:</p>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li>• Hello, how may I help you?</li>
+                                    <li>• Hello, what can I assist you with today?</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-3 ambient-glow">
+                                <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                    <span class="flex items-center space-x-3">
+                                        <span class="text-2xl">🎭</span>
+                                        <span>Role Inquiry</span>
+                                    </span>
+                                </h3>
+                                <p class="text-gray-300 mb-4">Ask what role they are applying for:</p>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li>• What role are you applying for today?</li>
+                                    <li>• What are you applying for here?</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-4 ambient-glow">
+                                <h3 class="text-xl font-semibold gradient-text mb-4 section-header">
+                                    <span class="flex items-center space-x-3">
+                                        <span class="text-2xl">🔍</span>
+                                        <span>Age Verification</span>
+                                    </span>
+                                </h3>
+                                <p class="text-gray-300 mb-4">Always ask for age verification:</p>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li>• May I ask how old you are?</li>
+                                    <li>• What is your current age?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Role Instructions Section -->
+                <section id="roles" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">🎭</span>
+                            <span>Role-Specific Instructions</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="grid lg:grid-cols-2 gap-6">
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-1 ambient-glow">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@Creative Academy / @Main Creative</h3>
+                            <p class="text-gray-300">Perfect! Please send two-three clips and @Creative Department will be here shortly to review them!</p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-2 ambient-glow">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@Academy Roster</h3>
+                            <p class="text-gray-300">Please link your tracker below with an image of the default dance in lobby!</p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-3 ambient-glow">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@Semi-Pro Roster / @Pro Roster</h3>
+                            <p class="text-gray-300">Perfect! Please send your tracker below with an image of the default dance in lobby! @operations will be here shortly to review!</p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-4 ambient-glow">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@VOID VFX / @VOID GFX</h3>
+                            <p class="text-gray-300">Alright, please link your previous work and/or portfolio below and @GFX / VFX Lead will be here shortly to review.</p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-5 ambient-glow">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@Content Creator</h3>
+                            <p class="text-gray-300">Perfect! Please link your social media accounts below and @Content Department will review them shortly!</p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-6 ambient-glow">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@Coach</h3>
+                            <p class="text-gray-300">How many people have you coached previously? Can you link their trackers below!</p>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-1 ambient-glow lg:col-span-2">
+                            <h3 class="text-lg font-semibold gradient-text mb-3 section-header">@Void Grinder+</h3>
+                            <p class="text-gray-300 mb-4">Unfortunately you do not qualify for any roles, however, we can offer you Grinder+!</p>
+                            <p class="text-gray-300 mb-4">For Grinder+ please do the following:</p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• Send a screenshot of using our support creator code "Team.Void".</li>
+                                <li>• Send a screenshot of changing your Epic Games username to have "Void" in it.</li>
+                                <li>• Use our Discord "Void" tag!</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-6 stagger-fade-in stagger-2 ambient-glow lg:col-span-2 border-l-4 border-red-500">
+                            <h3 class="text-lg font-semibold text-red-400 mb-3 section-header">⚠ blacklist</h3>
+                            <p class="text-gray-300 mb-4">Please follow these guidelines:</p>
+                            <ul class="space-y-2 text-gray-300">
+                                <li>• User: Username of the person</li>
+                                <li>• User ID: His discord ID</li>
+                                <li>• Reason: Underage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Closing Section -->
+                <section id="closing" class="content-section hidden">
+                    <h2 class="text-4xl font-bold gradient-text mb-8 section-header">
+                        <span class="flex items-center space-x-4">
+                            <span class="text-4xl">✅</span>
+                            <span>Closing the Ticket</span>
+                        </span>
+                    </h2>
+                    
+                    <div class="space-y-8">
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-1 ambient-glow">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-3xl">🎯</span>
+                                    <span>Final Steps</span>
+                                </span>
+                            </h3>
+                            <p class="text-gray-300 mb-6 text-lg leading-relaxed">Perfect! Please change your name to have "Void" in it and send a screenshot of using our code!</p>
+                            <div class="premium-card rounded-xl p-6 border-l-4 border-green-500">
+                                <p class="text-green-300 font-bold text-xl animate-pulse-slow">
+                                    Thank you! Here are your roles! Have a nice day!
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="premium-card rounded-2xl p-8 stagger-fade-in stagger-2 ambient-glow">
+                            <h3 class="text-2xl font-semibold gradient-text mb-4 section-header">
+                                <span class="flex items-center space-x-3">
+                                    <span class="text-3xl">⭐</span>
+                                    <span>Important:</span>
+                                </span>
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed text-lg">
+                                Always maintain professionalism throughout the entire interaction. Document all steps and escalate to senior staff when necessary.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Certification Section -->
+                <section id="certification" class="content-section hidden">
+                    <div class="mt-12 p-12 rounded-3xl premium-card animate-glow ambient-glow text-center">
+                        <div class="mb-8">
+                            <h2 class="text-5xl font-bold gradient-text mb-4 animate-float section-header">
+                                <span class="flex items-center justify-center space-x-4">
+                                    <span class="text-5xl">🏆</span>
+                                    <span>Complete Your Certification</span>
+                                </span>
+                            </h2>
+                            <p class="text-xl text-gray-300 mb-8">
+                                Take the final quiz to become a certified Void Esports Moderator
+                            </p>
+                        </div>
+                        
+                        <div class="relative inline-block">
+                            <button onclick="openQuiz()" class="premium-button px-12 py-6 rounded-2xl text-white font-bold text-xl relative overflow-hidden group">
+                                <span class="relative z-10 flex items-center space-x-3">
+                                    <span>🎯</span>
+                                    <span>Take Quiz</span>
+                                    <span>→</span>
+                                </span>
+                            </button>
+                            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-void-purple via-void-purple-light to-void-purple-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        
+                        <p class="text-gray-400 mt-6 text-sm">
+                            Opens in new tab • Takes approximately 10 minutes
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Particle system
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Enhanced section switching with animations
+        function showSection(sectionId) {
+            // Hide all sections with fade out
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    section.classList.add('hidden');
+                }, 300);
+            });
+            
+            // Remove active class from all sidebar items
+            document.querySelectorAll('.sidebar-item').forEach(item => {
+                item.classList.remove('active-section');
+            });
+            
+            // Show selected section with fade in
+            setTimeout(() => {
+                const selectedSection = document.getElementById(sectionId);
+                selectedSection.classList.remove('hidden');
+                
+                // Reset and trigger animations
+                selectedSection.querySelectorAll('.stagger-fade-in').forEach((element, index) => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 100 + (index * 100));
+                });
+                
+                selectedSection.style.opacity = '1';
+                selectedSection.style.transform = 'translateY(0)';
+            }, 300);
+            
+            // Add active class to clicked sidebar item
+            const activeItem = document.querySelector(`[data-section="${sectionId}"]`);
+            activeItem.classList.add('active-section');
+        }
+
+        function openQuiz() {
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSdwhpQEk86xNvnqB84vLrpB17GhCTHmw1Tu-YmUwoQ23rw8bQ/viewform', '_blank');
+        }
+
+        // Smooth scroll behavior
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Initialize with overview section
+            showSection('overview');
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add intersection observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all premium cards
+            document.querySelectorAll('.premium-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Add ripple effect to buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.premium-button')) {
+                const button = e.target;
+                const ripple = document.createElement('span');
+                const rect = button.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                button.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            }
+        });
+    </script>
+</body>
+</html>

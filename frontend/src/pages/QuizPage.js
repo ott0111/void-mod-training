@@ -15,169 +15,64 @@ const QuizPage = ({ user }) => {
 
   const quizQuestions = [
     {
-      question: "A user submits a roster ticket but is under 13 years old. What is the FIRST action you should take?",
-      options: [
-        "Immediately assign them to Grinder+ role",
-        "Politely inform them they don't qualify and suggest Grinder+",
-        "Ask for parental permission to proceed",
-        "Forward to senior staff for age verification exception"
-      ],
-      correct: 1,
-      category: "Ticket Types"
+      question: "A user submits a roster ticket but is under 13 years old. What is the FIRST action you should take and what should you offer them as an alternative?",
+      keywords: ["politely", "inform", "don't qualify", "suggest", "grinder+", "under 13", "alternative"],
+      category: "Ticket Types",
+      points: 10
     },
     {
-      question: "Which command should be used when a user repeatedly violates community guidelines after multiple warnings?",
-      options: [
-        "/warn @user Repeated violations",
-        "/report @user Repeated rule violations - needs staff review",
-        "/ban @user Repeated violations",
-        "/kick @user Final warning"
-      ],
-      correct: 1,
-      category: "Mod Commands"
+      question: "Which command should be used when a user repeatedly violates community guidelines after multiple warnings? Explain your reasoning and what the command does.",
+      keywords: ["/report", "repeated", "violations", "staff review", "major", "infractions"],
+      category: "Mod Commands",
+      points: 10
     },
     {
-      question: "A user applies for Pro Roster with 24,000 Power Ranking but only $800 in earnings. What should you do?",
-      options: [
-        "Accept them since they're close to the PR requirement",
-        "Reject them immediately for not meeting earnings threshold",
-        "Inform them they need both 25,000+ PR AND $1,000+ earnings",
-        "Ask them to provide additional tournament results"
-      ],
-      correct: 2,
-      category: "Roster Categories"
+      question: "A user applies for Pro Roster with 24,000 Power Ranking but only $800 in earnings. What are the exact requirements they need to meet and what should you tell them?",
+      keywords: ["25,000", "1,000", "both", "earnings", "power ranking", "requirements"],
+      category: "Roster Categories",
+      points: 10
     },
     {
-      question: "What is the correct response format when a user applies for Content Creator role?",
-      options: [
-        "Show me your social media accounts now",
-        "Perfect! Please link your social media accounts below and @Content Department will review them shortly!",
-        "You need 1k followers on Twitch/YouTube and 10k on TikTok",
-        "Let me check your follower count real quick"
-      ],
-      correct: 1,
-      category: "Role Instructions"
+      question: "Write the exact response you should give when a user applies for Content Creator role. Include the department that should review their application.",
+      keywords: ["perfect", "link", "social media", "content department", "review", "shortly"],
+      category: "Role Instructions",
+      points: 10
     },
     {
-      question: "A user has been inactive for 2 weeks and wants to return. What should you do?",
-      options: [
-        "Welcome them back and restore their roles immediately",
-        "Check their LOA status and performance before departure",
-        "Require them to retake the certification quiz",
-        "Ask them to reapply from scratch"
-      ],
-      correct: 1,
-      category: "Performance Metrics"
+      question: "A user has been inactive for 2 weeks and wants to return. What should you check first before restoring their roles and why?",
+      keywords: ["loa", "leave of application", "performance", "before departure", "check", "status"],
+      category: "Performance Metrics",
+      points: 10
     },
     {
-      question: "Which greeting is MOST appropriate for a general support ticket?",
-      options: [
-        "Yo what's up?",
-        "Hi there, how may I help you today?",
-        "Sup bro, need help?",
-        "What do you want?"
-      ],
-      correct: 1,
-      category: "Guidelines"
+      question: "What is the most appropriate greeting for a general support ticket? Write out the exact greeting you would use.",
+      keywords: ["hi there", "how may i help", "today", "professional", "greeting"],
+      category: "Guidelines",
+      points: 10
     },
     {
-      question: "A user claims to be a coach but can't provide student success stories. What should you do?",
-      options: [
-        "Accept them anyway since coaching is subjective",
-        "Ask for alternative proof like coaching methodology",
-        "Politely explain they need verifiable student results",
-        "Give them a trial period to prove their coaching ability"
-      ],
-      correct: 2,
-      category: "Role Instructions"
+      question: "A user claims to be a coach but can't provide student success stories. What should you ask for instead and why is verifiable proof important?",
+      keywords: ["verifiable", "student", "results", "success stories", "proof", "important"],
+      category: "Role Instructions",
+      points: 10
     },
     {
-      question: "What is the MINIMUM weekly message requirement for moderators?",
-      options: [
-        "100 messages per week",
-        "200 messages per week", 
-        "400 messages per week",
-        "500 messages per week"
-      ],
-      correct: 2,
-      category: "Performance Metrics"
+      question: "What is the minimum weekly message requirement for moderators and why is this requirement important for community engagement?",
+      keywords: ["400", "messages", "minimum", "weekly", "engagement", "community"],
+      category: "Performance Metrics",
+      points: 10
     },
     {
-      question: "When should you use the /report command instead of /warn?",
-      options: [
-        "For all rule violations",
-        "Only for spam messages",
-        "For major or repeated infractions that need staff review",
-        "Never - always use /warn"
-      ],
-      correct: 2,
-      category: "Mod Commands"
+      question: "In what specific situations should you use the /report command instead of /warn? Give at least two examples of when escalation is necessary.",
+      keywords: ["major", "repeated", "infractions", "staff review", "escalation", "necessary"],
+      category: "Mod Commands",
+      points: 10
     },
     {
-      question: "A user wants to join Void VFX but their work is 1080p. What should you tell them?",
-      options: [
-        "1080p is fine, send your portfolio",
-        "We need 1440p or higher quality work for Void VFX",
-        "Let me make an exception for you",
-        "Try Void GFX instead"
-      ],
-      correct: 1,
-      category: "Roster Categories"
-    },
-    {
-      question: "What is the proper format for documenting an LOA (Leave of Application)?",
-      options: [
-        "User: Name, Reason: Away, Time: 1 week",
-        "User : ———-, Role : ———-, Start Time : ———-, End Time : ———-, Reason : ———-",
-        "LOA: User away from date to date",
-        "Away: User, Role, Dates, Reason"
-      ],
-      correct: 1,
-      category: "Mod Commands"
-    },
-    {
-      question: "A user applies for Academy Roster with 4,500 Power Ranking. What should you do?",
-      options: [
-        "Accept them since they're close to 5,000",
-        "Reject them for not meeting the 5,000+ PR requirement",
-        "Ask them to provide recent gameplay showing improvement",
-        "Place them in trial academy to evaluate"
-      ],
-      correct: 1,
-      category: "Roster Categories"
-    },
-    {
-      question: "Which of these is NOT a valid reason to immediately escalate a ticket to senior staff?",
-      options: [
-        "User threatening self-harm",
-        "User reporting a bug in the system",
-        "User harassing other members",
-        "User attempting to exploit the system"
-      ],
-      correct: 1,
-      category: "Guidelines"
-    },
-    {
-      question: "What should you do if a user disputes their quiz results?",
-      options: [
-        "Ignore their dispute - the system is always correct",
-        "Review their specific answers and provide feedback",
-        "Immediately let them retake the quiz",
-        "Forward to admin for manual review"
-      ],
-      correct: 1,
-      category: "Performance Metrics"
-    },
-    {
-      question: "A Streamer applicant has 800 followers on Twitch but 15k on TikTok. Do they qualify?",
-      options: [
-        "Yes - TikTok followers count more",
-        "No - they need 1,000+ on Twitch/YouTube specifically",
-        "Yes - combined followers exceed requirements",
-        "No - they need both platform requirements"
-      ],
-      correct: 1,
-      category: "Roster Categories"
+      question: "What are the quality requirements for Void VFX submissions and what should you tell a user who submits 1080p work?",
+      keywords: ["1440p", "higher", "quality", "void vfx", "requirements", "1080p"],
+      category: "Roster Categories",
+      points: 10
     }
   ];
 
@@ -222,9 +117,9 @@ const QuizPage = ({ user }) => {
     setQuizState('quiz');
   };
 
-  const selectAnswer = (answerIndex) => {
+  const selectAnswer = (answer) => {
     const newAnswers = [...answers];
-    newAnswers[currentQuestion] = answerIndex;
+    newAnswers[currentQuestion] = answer;
     setAnswers(newAnswers);
   };
 
@@ -246,32 +141,55 @@ const QuizPage = ({ user }) => {
     setIsSubmitting(true);
     
     try {
-      // Calculate score
-      let correctCount = 0;
-      const questionResults = quiz.map((question, index) => {
-        const isCorrect = answers[index] === question.correct;
-        if (isCorrect) correctCount++;
-        return {
-          question: question.question,
-          userAnswer: answers[index],
-          correctAnswer: question.correct,
-          isCorrect,
-          category: question.category
-        };
+      // Calculate score based on keyword matching
+      let totalScore = 0;
+      const questionResults = [];
+      
+      answers.forEach((answer, index) => {
+        if (index < quiz.length && answer) {
+          const question = quiz[index];
+          const keywords = question.keywords || [];
+          const answerText = answer.toLowerCase();
+          
+          // Count how many keywords are found in the answer
+          const matchedKeywords = keywords.filter(keyword => 
+            answerText.includes(keyword.toLowerCase())
+          );
+          
+          // Calculate score based on keyword matches
+          const keywordScore = matchedKeywords.length;
+          const maxKeywords = keywords.length;
+          const questionScore = Math.round((keywordScore / maxKeywords) * question.points);
+          
+          totalScore += questionScore;
+          
+          questionResults.push({
+            questionId: question.id,
+            question: question.question,
+            userAnswer: answer,
+            keywords: keywords,
+            matchedKeywords: matchedKeywords,
+            score: questionScore,
+            maxScore: question.points,
+            isCorrect: keywordScore >= (maxKeywords * 0.6), // 60% of keywords needed to pass
+            category: question.category
+          });
+        }
       });
 
-      const passed = correctCount >= 7; // 7 out of 10 to pass
-      const score = correctCount;
-
+      const maxTotalScore = quiz.reduce((sum, q) => sum + q.points, 0);
+      const passed = totalScore >= (maxTotalScore * 0.7); // 70% to pass
+      
       // Submit to backend (if available)
       if (user) {
-        await quizService.submitQuiz(user.id, answers, 'internal-quiz');
+        await quizService.submitQuiz(user.id, answers, 'long-answer-quiz');
       }
 
       setResults({
-        score,
-        total: quiz.length,
+        score: totalScore,
+        total: maxTotalScore,
         passed,
+        percentage: Math.round((totalScore / maxTotalScore) * 100),
         questionResults,
         categoryBreakdown: calculateCategoryBreakdown(questionResults)
       });
@@ -280,11 +198,11 @@ const QuizPage = ({ user }) => {
     } catch (error) {
       console.error('Error submitting quiz:', error);
       // Still show results even if backend fails
-      const correctCount = answers.filter((answer, index) => answer === quiz[index].correct).length;
       setResults({
-        score: correctCount,
-        total: quiz.length,
-        passed: correctCount >= 7
+        score: 0,
+        total: quiz.reduce((sum, q) => sum + q.points, 0),
+        passed: false,
+        percentage: 0
       });
       setQuizState('results');
     } finally {
@@ -480,50 +398,58 @@ const QuizPage = ({ user }) => {
             </div>
           </motion.div>
 
-          {/* Answer Options */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            {question.options.map((option, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <button
-                  onClick={() => selectAnswer(index)}
-                  className={`quiz-option w-full text-left p-6 relative group ${
-                    answers[currentQuestion] === index ? 'selected' : ''
-                  }`}
-                >
-                  <div className="flex items-center space-x-4">
-                    {/* Option Indicator */}
-                    <div className={`w-6 h-6 rounded-full border-2 transition-all duration-300 flex items-center justify-center ${
-                      answers[currentQuestion] === index
-                        ? 'border-void-purple-400 bg-void-purple-400'
-                        : 'border-gray-400 group-hover:border-void-purple-400'
-                    }`}>
-                      {answers[currentQuestion] === index && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="w-2 h-2 bg-white rounded-full"
-                        />
-                      )}
-                    </div>
-                    
-                    {/* Option Text */}
-                    <span className="text-lg text-white group-hover:text-void-purple-200 transition-colors">
-                      {option}
+          {/* Answer Input */}
+          <div className="mb-8">
+            <div className="glass-card-lg p-8">
+              <div className="mb-4">
+                <label className="block text-lg font-medium text-void-purple-300 mb-2">
+                  Your Answer:
+                </label>
+                <p className="text-sm text-gray-400 mb-4">
+                  Provide a detailed answer. The system will check for specific keywords and concepts.
+                </p>
+              </div>
+              
+              <textarea
+                value={answers[currentQuestion] || ''}
+                onChange={(e) => selectAnswer(e.target.value)}
+                placeholder="Type your detailed answer here..."
+                className="w-full h-32 p-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-void-purple-400 focus:bg-white/10 transition-all duration-300 resize-none"
+                style={{
+                  backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)'
+                }}
+              />
+              
+              {/* Character count */}
+              <div className="mt-2 text-right">
+                <span className="text-sm text-gray-400">
+                  {answers[currentQuestion]?.length || 0} characters
+                </span>
+              </div>
+              
+              {/* Keywords hint */}
+              <div className="mt-4 p-3 bg-void-purple-600/10 border border-void-purple-400/20 rounded-lg">
+                <p className="text-sm text-void-purple-300 mb-2">
+                  💡 Key concepts to include:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {question.keywords.slice(0, 4).map((keyword, index) => (
+                    <span
+                      key={index}
+                      className="px-2 py-1 bg-void-purple-500/20 border border-void-purple-400/30 rounded text-xs text-void-purple-200"
+                    >
+                      {keyword}
                     </span>
-                  </div>
-                  
-                  {/* Hover Effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-void-purple-600/10 to-void-purple-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </button>
-              </motion.div>
-            ))}
+                  ))}
+                  {question.keywords.length > 4 && (
+                    <span className="px-2 py-1 bg-void-purple-500/20 border border-void-purple-400/30 rounded text-xs text-void-purple-200">
+                      +{question.keywords.length - 4} more
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Navigation */}
@@ -546,7 +472,7 @@ const QuizPage = ({ user }) => {
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentQuestion
                       ? 'bg-void-purple-400 shadow-void-glow scale-125'
-                      : answers[index] !== null
+                      : answers[index] && answers[index].trim().length > 0
                       ? 'bg-void-purple-600/60 hover:bg-void-purple-600/80'
                       : 'bg-gray-600 hover:bg-gray-500'
                   }`}
@@ -558,7 +484,7 @@ const QuizPage = ({ user }) => {
 
             <button
               onClick={nextQuestion}
-              disabled={answers[currentQuestion] === null}
+              disabled={!answers[currentQuestion] || answers[currentQuestion].trim().length < 10}
               className="neon-button px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2 text-lg font-semibold"
             >
               <span>{currentQuestion === quiz.length - 1 ? 'Submit Quiz' : 'Next'}</span>

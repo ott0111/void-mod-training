@@ -7,182 +7,72 @@ const quizQuestions = [
   {
     id: 1,
     category: "Ticket Types",
-    question: "A user submits a roster ticket but is under 13 years old. What is the FIRST action you should take?",
-    options: [
-      "Immediately assign them to Grinder+ role",
-      "Politely inform them they don't qualify and suggest Grinder+",
-      "Ask for parental permission to proceed",
-      "Forward to senior staff for age verification exception"
-    ],
-    correct: 1
+    question: "A user submits a roster ticket but is under 13 years old. What is the FIRST action you should take and what should you offer them as an alternative?",
+    keywords: ["politely", "inform", "don't qualify", "suggest", "grinder+", "under 13", "alternative"],
+    points: 10
   },
   {
     id: 2,
     category: "Mod Commands",
-    question: "Which command should be used when a user repeatedly violates community guidelines after multiple warnings?",
-    options: [
-      "/warn @user Repeated violations",
-      "/report @user Repeated rule violations - needs staff review",
-      "/ban @user Repeated violations",
-      "/kick @user Final warning"
-    ],
-    correct: 1
+    question: "Which command should be used when a user repeatedly violates community guidelines after multiple warnings? Explain your reasoning and what the command does.",
+    keywords: ["/report", "repeated", "violations", "staff review", "major", "infractions"],
+    points: 10
   },
   {
     id: 3,
     category: "Roster Categories",
-    question: "A user applies for Pro Roster with 24,000 Power Ranking but only $800 in earnings. What should you do?",
-    options: [
-      "Accept them since they're close to the PR requirement",
-      "Reject them immediately for not meeting earnings threshold",
-      "Inform them they need both 25,000+ PR AND $1,000+ earnings",
-      "Ask them to provide additional tournament results"
-    ],
-    correct: 2
+    question: "A user applies for Pro Roster with 24,000 Power Ranking but only $800 in earnings. What are the exact requirements they need to meet and what should you tell them?",
+    keywords: ["25,000", "1,000", "both", "earnings", "power ranking", "requirements"],
+    points: 10
   },
   {
     id: 4,
     category: "Role Instructions",
-    question: "What is the correct response format when a user applies for Content Creator role?",
-    options: [
-      "Show me your social media accounts now",
-      "Perfect! Please link your social media accounts below and @Content Department will review them shortly!",
-      "You need 1k followers on Twitch/YouTube and 10k on TikTok",
-      "Let me check your follower count real quick"
-    ],
-    correct: 1
+    question: "Write the exact response you should give when a user applies for Content Creator role. Include the department that should review their application.",
+    keywords: ["perfect", "link", "social media", "content department", "review", "shortly"],
+    points: 10
   },
   {
     id: 5,
     category: "Performance Metrics",
-    question: "A user has been inactive for 2 weeks and wants to return. What should you do?",
-    options: [
-      "Welcome them back and restore their roles immediately",
-      "Check their LOA status and performance before departure",
-      "Require them to retake the certification quiz",
-      "Ask them to reapply from scratch"
-    ],
-    correct: 1
+    question: "A user has been inactive for 2 weeks and wants to return. What should you check first before restoring their roles and why?",
+    keywords: ["loa", "leave of application", "performance", "before departure", "check", "status"],
+    points: 10
   },
   {
     id: 6,
     category: "Guidelines",
-    question: "Which greeting is MOST appropriate for a general support ticket?",
-    options: [
-      "Yo what's up?",
-      "Hi there, how may I help you today?",
-      "Sup bro, need help?",
-      "What do you want?"
-    ],
-    correct: 1
+    question: "What is the most appropriate greeting for a general support ticket? Write out the exact greeting you would use.",
+    keywords: ["hi there", "how may i help", "today", "professional", "greeting"],
+    points: 10
   },
   {
     id: 7,
     category: "Role Instructions",
-    question: "A user claims to be a coach but can't provide student success stories. What should you do?",
-    options: [
-      "Accept them anyway since coaching is subjective",
-      "Ask for alternative proof like coaching methodology",
-      "Politely explain they need verifiable student results",
-      "Give them a trial period to prove their coaching ability"
-    ],
-    correct: 2
+    question: "A user claims to be a coach but can't provide student success stories. What should you ask for instead and why is verifiable proof important?",
+    keywords: ["verifiable", "student", "results", "success stories", "proof", "important"],
+    points: 10
   },
   {
     id: 8,
     category: "Performance Metrics",
-    question: "What is the MINIMUM weekly message requirement for moderators?",
-    options: [
-      "100 messages per week",
-      "200 messages per week", 
-      "400 messages per week",
-      "500 messages per week"
-    ],
-    correct: 2
+    question: "What is the minimum weekly message requirement for moderators and why is this requirement important for community engagement?",
+    keywords: ["400", "messages", "minimum", "weekly", "engagement", "community"],
+    points: 10
   },
   {
     id: 9,
     category: "Mod Commands",
-    question: "When should you use the /report command instead of /warn?",
-    options: [
-      "For all rule violations",
-      "Only for spam messages",
-      "For major or repeated infractions that need staff review",
-      "Never - always use /warn"
-    ],
-    correct: 2
+    question: "In what specific situations should you use the /report command instead of /warn? Give at least two examples of when escalation is necessary.",
+    keywords: ["major", "repeated", "infractions", "staff review", "escalation", "necessary"],
+    points: 10
   },
   {
     id: 10,
     category: "Roster Categories",
-    question: "A user wants to join Void VFX but their work is 1080p. What should you tell them?",
-    options: [
-      "1080p is fine, send your portfolio",
-      "We need 1440p or higher quality work for Void VFX",
-      "Let me make an exception for you",
-      "Try Void GFX instead"
-    ],
-    correct: 1
-  },
-  {
-    id: 11,
-    category: "Mod Commands",
-    question: "What is the proper format for documenting an LOA (Leave of Application)?",
-    options: [
-      "User: Name, Reason: Away, Time: 1 week",
-      "User : ———-, Role : ———-, Start Time : ———-, End Time : ———-, Reason : ———-",
-      "LOA: User away from date to date",
-      "Away: User, Role, Dates, Reason"
-    ],
-    correct: 1
-  },
-  {
-    id: 12,
-    category: "Roster Categories",
-    question: "A user applies for Academy Roster with 4,500 Power Ranking. What should you do?",
-    options: [
-      "Accept them since they're close to 5,000",
-      "Reject them for not meeting the 5,000+ PR requirement",
-      "Ask them to provide recent gameplay showing improvement",
-      "Place them in trial academy to evaluate"
-    ],
-    correct: 1
-  },
-  {
-    id: 13,
-    category: "Guidelines",
-    question: "Which of these is NOT a valid reason to immediately escalate a ticket to senior staff?",
-    options: [
-      "User threatening self-harm",
-      "User reporting a bug in the system",
-      "User harassing other members",
-      "User attempting to exploit the system"
-    ],
-    correct: 1
-  },
-  {
-    id: 14,
-    category: "Performance Metrics",
-    question: "What should you do if a user disputes their quiz results?",
-    options: [
-      "Ignore their dispute - the system is always correct",
-      "Review their specific answers and provide feedback",
-      "Immediately let them retake the quiz",
-      "Forward to admin for manual review"
-    ],
-    correct: 1
-  },
-  {
-    id: 15,
-    category: "Roster Categories",
-    question: "A Streamer applicant has 800 followers on Twitch but 15k on TikTok. Do they qualify?",
-    options: [
-      "Yes - TikTok followers count more",
-      "No - they need 1,000+ on Twitch/YouTube specifically",
-      "Yes - combined followers exceed requirements",
-      "No - they need both platform requirements"
-    ],
-    correct: 1
+    question: "What are the quality requirements for Void VFX submissions and what should you tell a user who submits 1080p work?",
+    keywords: ["1440p", "higher", "quality", "void vfx", "requirements", "1080p"],
+    points: 10
   }
 ];
 
@@ -260,44 +150,56 @@ router.post('/submit', (req, res) => {
       return res.status(400).json({ error: 'Invalid submission data' });
     }
 
-    // Calculate score
-    let correctCount = 0;
+    // Calculate score based on keyword matching
+    let totalScore = 0;
     const questionResults = [];
     
-    // For demo, we'll use the first 10 questions
-    const questions = quizQuestions.slice(0, 10);
-    
     answers.forEach((answer, index) => {
-      if (index < questions.length) {
-        const question = questions[index];
-        const isCorrect = answer === question.correct;
-        if (isCorrect) correctCount++;
+      if (index < quizQuestions.length && answer) {
+        const question = quizQuestions[index];
+        const keywords = question.keywords || [];
+        const answerText = answer.toLowerCase();
+        
+        // Count how many keywords are found in the answer
+        const matchedKeywords = keywords.filter(keyword => 
+          answerText.includes(keyword.toLowerCase())
+        );
+        
+        // Calculate score based on keyword matches
+        const keywordScore = matchedKeywords.length;
+        const maxKeywords = keywords.length;
+        const questionScore = Math.round((keywordScore / maxKeywords) * question.points);
+        
+        totalScore += questionScore;
         
         questionResults.push({
           questionId: question.id,
           question: question.question,
           userAnswer: answer,
-          correctAnswer: question.correct,
-          isCorrect,
+          keywords: keywords,
+          matchedKeywords: matchedKeywords,
+          score: questionScore,
+          maxScore: question.points,
+          isCorrect: keywordScore >= (maxKeywords * 0.6), // 60% of keywords needed to pass
           category: question.category
         });
       }
     });
 
-    const score = correctCount;
-    const totalQuestions = Math.min(answers.length, questions.length);
-    const passed = score >= 7;
+    const maxTotalScore = quizQuestions.reduce((sum, q) => sum + q.points, 0);
+    const passed = totalScore >= (maxTotalScore * 0.7); // 70% to pass
     
     // Store attempt
     const attempt = {
       id: uuidv4(),
       userId,
       quizId,
-      score,
-      totalQuestions,
+      score: totalScore,
+      totalQuestions: quizQuestions.length,
+      maxTotalScore: maxTotalScore,
       passed,
-      answers,
-      questionResults,
+      answers: answers,
+      questionResults: questionResults,
       startTime,
       endTime: new Date().toISOString(),
       submittedAt: new Date().toISOString()
@@ -322,9 +224,11 @@ router.post('/submit', (req, res) => {
     const categoryBreakdown = {};
     questionResults.forEach(result => {
       if (!categoryBreakdown[result.category]) {
-        categoryBreakdown[result.category] = { total: 0, correct: 0 };
+        categoryBreakdown[result.category] = { total: 0, correct: 0, score: 0, maxScore: 0 };
       }
       categoryBreakdown[result.category].total++;
+      categoryBreakdown[result.category].score += result.score;
+      categoryBreakdown[result.category].maxScore += result.maxScore;
       if (result.isCorrect) {
         categoryBreakdown[result.category].correct++;
       }
@@ -333,10 +237,11 @@ router.post('/submit', (req, res) => {
     res.json({
       success: true,
       results: {
-        score,
-        totalQuestions,
+        score: totalScore,
+        total: maxTotalScore,
+        percentage: Math.round((totalScore / maxTotalScore) * 100),
         passed,
-        passingScore: 7,
+        passingScore: Math.round(maxTotalScore * 0.7),
         questionResults,
         categoryBreakdown,
         timeTaken: Date.now() - new Date(startTime).getTime()

@@ -1,295 +1,277 @@
-# Void Mod Training
+# Void Mod Training Platform
 
-A comprehensive esports moderator training system with Discord integration for Void Esports.
+A comprehensive esports moderator training system with modern React frontend and Node.js backend, featuring Discord integration preparation and optional Supabase database support.
 
 ## 🚀 Features
 
-### Frontend
-- **Premium Dark UI**: Futuristic purple neon theme with glowing borders and smooth animations
-- **Interactive Dashboard**: Modern sidebar navigation with organized content sections
-- **Responsive Design**: Works seamlessly on desktop and mobile devices
-- **Glassmorphism Effects**: Advanced UI with blur effects and depth
-- **Animated Elements**: Floating particles, gradient shifts, and smooth transitions
+### Frontend (React)
+- **Premium Dark UI**: Futuristic purple neon theme with glassmorphism effects
+- **Interactive Dashboard**: Modern sidebar navigation with animated transitions
+- **Training Modules**: Comprehensive moderator training with exact content
+- **Internal Quiz System**: 10-question certification quiz with automatic grading
+- **Certification Management**: Track and display user achievements
+- **Admin Panel**: Manage trainees and view analytics
+- **Responsive Design**: Works seamlessly on desktop and mobile
 
-### Backend
-- **Discord OAuth2 Authentication**: Secure login using Discord accounts
-- **Automated Quiz System**: 29-question certification quiz with automatic grading
-- **Role Assignment**: Automatic Discord role assignment upon quiz completion
-- **SQLite Database**: Lightweight, reliable data storage for user progress
-- **Google Forms Integration**: Optional integration with existing Google Forms quiz
-- **RESTful API**: Clean, well-documented API endpoints
+### Backend (Node.js)
+- **RESTful API**: Clean, well-documented endpoints
+- **Quiz System**: Question generation, grading, and attempt tracking
+- **User Management**: Profile management and certification tracking
+- **Admin Analytics**: Statistics and trainee management
+- **Rate Limiting**: Protection against abuse
+- **Security**: Input validation and error handling
 
-### Discord Integration
-- **Discord Bot**: Automated role management and user notifications
-- **Slash Commands**: `/verify`, `/quiz-status`, `/mod-help`
-- **DM Notifications**: Automatic messages for quiz results
-- **Role Management**: Assigns Trial Mod, Staff Access, and Ticket Support roles
-
-## 📋 Training Sections
-
-1. **Overview**: Program introduction and training path
-2. **Ticket Types**: General and Roster ticket handling protocols
-3. **Roster Categories**: Requirements for all Void Esports roles
-4. **Mod Commands**: Warning, reporting, and LOA procedures
-5. **Performance Metrics**: Weekly activity requirements
-6. **Guidelines**: Professional communication standards
-7. **Role Instructions**: Specific responses for each role type
-8. **Closing Tickets**: Final steps and role assignment
-9. **Certification**: Quiz completion and certification
+### Integration Ready
+- **Discord Bot**: Prepared structure for role assignment
+- **Supabase**: Optional database integration
+- **Scalable Architecture**: Modular design for easy expansion
 
 ## 🛠 Tech Stack
 
 ### Frontend
-- **HTML5**, **Tailwind CSS**, **Vanilla JavaScript**
-- **Custom Purple Theme**: Advanced gradient system with animations
-- **Glassmorphism UI**: Modern blur effects and depth
+- **React 18** - Modern UI framework
+- **Tailwind CSS** - Utility-first styling with custom purple theme
+- **Framer Motion** - Smooth animations and transitions
+- **Lucide React** - Beautiful icon library
+- **Supabase Client** - Optional database integration
 
 ### Backend
-- **Node.js**, **Express.js**, **Discord.js**
-- **SQLite Database**: User data and quiz results
-- **Passport.js**: Discord OAuth2 authentication
-- **Rate Limiting**: Security and abuse prevention
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **Rate Limiting** - Abuse prevention
+- **Helmet.js** - Security headers
+- **Discord.js Ready** - Prepared for bot integration
 
-### Integration
-- **Google Forms API**: Optional quiz integration
-- **Discord Bot API**: Role management and notifications
-- **REST API**: Clean endpoint design
+## 📋 Project Structure
+
+```
+void-mod-training/
+├── frontend/                 # React application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── pages/          # Page components
+│   │   ├── services/       # API services
+│   │   └── styles/         # Global styles
+│   ├── public/
+│   └── package.json
+├── backend/                 # Node.js API
+│   ├── routes/            # API routes
+│   ├── services/          # Business logic (prepared)
+│   ├── discord/           # Discord integration (prepared)
+│   ├── quiz/              # Quiz system
+│   └── server.js
+├── README.md
+└── .gitignore
+```
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 16+ installed
-- Discord server with bot permissions
-- Discord Developer Portal application
+- npm or yarn package manager
 
-### Frontend Only (Quick Demo)
+### Frontend Setup
+
 ```bash
-# Open the website directly
-open index.html
-# or serve with a simple web server
-npx serve .
-```
-
-### Full System (Backend + Frontend)
-```bash
-# Clone the repository
-git clone <repository-url>
-cd void-mod-training
-
-# Setup backend
-cd backend
+cd frontend
 npm install
 cp .env.example .env
-# Edit .env with your Discord credentials
-
-# Run setup wizard
-node setup.js
-
-# Start the server
+# Edit .env with your Supabase credentials (optional)
 npm start
 ```
 
-### Environment Configuration
+The frontend will be available at `http://localhost:3000`
+
+### Backend Setup
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+# Edit .env with your configuration
+npm start
+```
+
+The backend API will be available at `http://localhost:3001`
+
+## 📚 Training Content
+
+The platform includes exact moderator training content:
+
+### Training Modules
+1. **Program Overview** - Introduction and requirements
+2. **Ticket Types** - General and Roster ticket handling
+3. **Roster Categories** - Requirements for all Void Esports roles
+4. **Mod Commands** - Warning, reporting, and LOA procedures
+5. **Performance Metrics** - Weekly activity requirements
+6. **Guidelines** - Professional communication standards
+7. **Role Instructions** - Specific responses for each role type
+8. **Closing Tickets** - Final steps and role assignment
+
+### LOA Format
+```
+User : ———-
+Role : ———-
+Start Time : ———-
+End Time : ———-
+Reason : ———-
+```
+
+### Quiz System
+- **10 questions** generated from training content
+- **Randomized order** and answer options
+- **7 correct answers** required to pass (70%)
+- **24-hour cooldown** for failed attempts
+- **Automatic grading** and feedback
+
+## 🔧 Configuration
+
+### Frontend Environment Variables
 ```env
-# Discord Configuration
-DISCORD_BOT_TOKEN=your_discord_bot_token
-DISCORD_CLIENT_ID=your_discord_client_id
-DISCORD_CLIENT_SECRET=your_discord_client_secret
-DISCORD_GUILD_ID=your_discord_guild_id
-
-# Discord Role IDs
-ROLE_TRIAL_MOD_ID=your_trial_mod_role_id
-ROLE_STAFF_ACCESS_ID=your_staff_access_role_id
-ROLE_TICKET_SUPPORT_ID=your_ticket_support_role_id
-
-# Server Configuration
-PORT=3000
-SESSION_SECRET=your_session_secret
-FRONTEND_URL=http://localhost:5500
+REACT_APP_SUPABASE_URL=your-supabase-url
+REACT_APP_SUPABASE_ANON_KEY=your-supabase-anon-key
+REACT_APP_API_URL=http://localhost:3001
 ```
 
-## 📊 Project Structure
-
-```
-void-mod-training/
-├── index.html                 # Frontend dashboard
-├── README.md                  # This file
-├── .gitignore                 # Git ignore file
-├── INTEGRATION_GUIDE.md       # Detailed integration guide
-├── backend/                   # Backend server
-│   ├── server.js              # Main server file
-│   ├── config.js              # Configuration management
-│   ├── database.js            # SQLite database operations
-│   ├── discordBot.js          # Discord bot implementation
-│   ├── package.json           # Backend dependencies
-│   ├── .env.example           # Environment template
-│   ├── auth/
-│   │   └── discordAuth.js     # Discord OAuth strategy
-│   ├── routes/
-│   │   ├── quiz.js           # Quiz API routes
-│   │   └── verify.js         # Verification API routes
-│   ├── services/
-│   │   ├── discordService.js  # Discord role management
-│   │   ├── quizService.js     # Quiz logic and scoring
-│   │   └── googleFormsService.js # Google Forms integration
-│   ├── scripts/
-│   │   ├── setup.bat         # Windows setup script
-│   │   └── start-dev.bat     # Development start script
-│   └── setup.js              # Setup wizard
-├── api/                      # Legacy placeholder files
-├── services/                 # Legacy placeholder files
-└── discord/                  # Legacy placeholder files
+### Backend Environment Variables
+```env
+PORT=3001
+FRONTEND_URL=http://localhost:3000
+SUPABASE_URL=your-supabase-url
+SUPABASE_ANON_KEY=your-supabase-anon-key
+DISCORD_BOT_TOKEN=your-discord-bot-token
+DISCORD_CLIENT_ID=your-discord-client-id
+DISCORD_GUILD_ID=your-discord-guild-id
+ROLE_TRIAL_MOD_ID=trial-mod-role-id
+ROLE_STAFF_ACCESS_ID=staff-access-role-id
+ROLE_TICKET_SUPPORT_ID=ticket-support-role-id
 ```
 
 ## 🎯 User Flow
 
-1. **Discord Login**: User authenticates via Discord OAuth2
-2. **Study Training**: User reviews all training materials on website
-3. **Take Quiz**: 29-question certification quiz (20/29 to pass)
-4. **Automatic Role Assignment**: Bot assigns Discord roles if passed
-5. **Notification**: User receives DM with results and welcome message
+1. **Dashboard** - Overview and quick actions
+2. **Training Modules** - Study all training materials
+3. **Quiz** - Take certification quiz (7/10 to pass)
+4. **Certification** - View achievements and download certificate
+5. **Admin Panel** - Manage trainees (admin only)
 
-## 🤖 Discord Setup
+## 🤖 Discord Integration (Prepared)
 
-### 1. Create Discord Application
-1. Go to [Discord Developer Portal](https://discord.com/developers/applications)
-2. Create a new application
-3. Add a bot with "Manage Roles" permission
-4. Copy bot token and client ID to `.env`
+The system is prepared for Discord bot integration:
 
-### 2. Configure OAuth2
-1. Set redirect URI: `http://localhost:3000/auth/discord/callback`
-2. Add scopes: `identify`, `guilds.join`
-
-### 3. Get Role IDs
-1. Enable Developer Mode in Discord
-2. Right-click roles and "Copy ID"
-3. Add role IDs to `.env`
-
-### 4. Invite Bot to Server
-Generate invite link with permissions:
-- Manage Roles
-- Read Messages/View Channels
-- Send Messages
-- Embed Links
-
-## 📝 API Endpoints
-
-### Authentication
-- `GET /auth/discord` - Initiate Discord OAuth
-- `GET /api/user` - Get current user info
-
-### Quiz System
-- `POST /api/quiz/generate` - Generate new quiz
-- `POST /api/quiz/submit` - Submit quiz answers
-- `GET /api/quiz/history` - Get quiz history
-
-### Verification
-- `POST /api/verify/quiz-completion` - Verify and assign roles
-- `GET /api/verify/status` - Check verification status
-
-### System
-- `GET /health` - Health check and service status
-
-## 🔧 Development
-
-### Frontend Development
-```bash
-# Serve frontend with hot reload
-npx serve .
-
-# Or use any web server
-python -m http.server 5500
+### Role Assignment Structure
+```javascript
+const DISCORD_ROLES = {
+  trial_mod: process.env.ROLE_TRIAL_MOD_ID,
+  staff_access: process.env.ROLE_STAFF_ACCESS_ID,
+  ticket_support: process.env.ROLE_TICKET_SUPPORT_ID
+};
 ```
 
-### Backend Development
-```bash
-cd backend
-npm run dev  # Development with nodemon
-npm start    # Production
+### API Endpoints Ready
+- `POST /api/discord/assign-roles` - Assign roles to user
+- `POST /api/discord/remove-roles` - Remove roles from user
+- `GET /api/discord/user-roles/:userId` - Get user's current roles
+- `POST /api/discord/notify` - Send notification to user
+
+### Implementation Steps
+1. Set up Discord application and bot
+2. Configure environment variables
+3. Implement Discord.js bot logic
+4. Connect role assignment to quiz completion
+
+## 📊 Supabase Integration (Optional)
+
+The platform supports Supabase for database functionality:
+
+### Tables Structure
+```sql
+users
+- id (uuid, primary key)
+- email (text)
+- full_name (text)
+- role (text)
+- created_at (timestamp)
+- updated_at (timestamp)
+
+quiz_attempts
+- id (uuid, primary key)
+- user_id (uuid, foreign key)
+- score (integer)
+- total_questions (integer)
+- passed (boolean)
+- answers (json)
+- created_at (timestamp)
+
+certifications
+- id (uuid, primary key)
+- user_id (uuid, foreign key)
+- quiz_id (uuid)
+- score (integer)
+- certificate_id (text)
+- created_at (timestamp)
 ```
 
-### Scripts
-```bash
-# Setup wizard (backend)
-node setup.js
+## 🎨 UI Features
 
-# Windows setup scripts
-cd backend/scripts
-setup.bat      # Complete setup
-start-dev.bat  # Start development server
-```
+### Design System
+- **Purple Gradient Palette**: #6d28d9, #7c3aed, #8b5cf6, #a78bfa, #c4b5fd
+- **Glassmorphism**: Blur effects with transparent backgrounds
+- **Neon Glow Effects**: Animated purple glows on interactive elements
+- **Smooth Animations**: Page transitions, hover effects, and micro-interactions
 
-## 📊 Quiz System
-
-### Internal Quiz (Default)
-- **29 questions** covering all training sections
-- **Randomized order** and answer options
-- **20/29 correct answers** to pass
-- **24-hour cooldown** for failed attempts
-- **Detailed analytics** and history tracking
-
-### Categories
-- Ticket Types (5 questions)
-- Roster Categories (8 questions)
-- Mod Commands (4 questions)
-- Performance Metrics (3 questions)
-- Guidelines (6 questions)
-- Role Instructions (3 questions)
-
-### Google Forms Integration (Optional)
-- Automatic response retrieval
-- Sync with internal database
-- Fallback to internal quiz system
+### Components
+- **Sidebar Navigation**: Collapsible navigation with active indicators
+- **Glass Cards**: Modern card design with blur effects
+- **Gradient Borders**: Animated gradient borders on elements
+- **Particle System**: Floating background particles for depth
+- **Loading States**: Smooth loading animations
 
 ## 🔒 Security Features
 
 - **Rate Limiting**: 100 requests per 15 minutes per IP
-- **Session Security**: Encrypted session storage
 - **Input Validation**: Comprehensive sanitization
 - **CORS Protection**: Configurable cross-origin requests
-- **Helmet.js**: Security headers and protections
+- **Security Headers**: Helmet.js protection
+- **Environment Variables**: Secure configuration management
 
-## 📈 Monitoring
+## 📈 Analytics & Monitoring
 
-### Health Check
-```bash
-curl http://localhost:3000/health
-```
+### Admin Panel Features
+- **Trainee Management**: View all users and their progress
+- **Quiz Statistics**: Pass rates, category performance, difficulty analysis
+- **Certification Tracking**: Monitor issued certifications
+- **Export Data**: CSV export for trainees, attempts, and certifications
+- **Real-time Stats**: Active users, recent activity
 
-### Logging
-- Authentication attempts
-- Quiz submissions and scores
-- Role assignments
-- API errors and warnings
-- Discord bot status
+### Metrics Tracked
+- Quiz completion rates
+- Pass/fail percentages
+- Category-wise performance
+- Time to complete quizzes
+- User engagement metrics
+- Certification issuance
 
 ## 🚀 Deployment
 
-### Production Setup
+### Frontend Deployment
 ```bash
-# Set production environment
-NODE_ENV=production
-
-# Use process manager
-npm install -g pm2
-pm2 start backend/server.js --name "void-mod-training"
-
-# Setup reverse proxy (nginx)
-# Configure SSL certificate
+cd frontend
+npm run build
+# Deploy the build/ folder to your hosting service
 ```
 
-### Docker Support
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY backend/package*.json ./
-RUN npm ci --only=production
-COPY backend/ .
-COPY index.html .
-EXPOSE 3000
-CMD ["npm", "start"]
+### Backend Deployment
+```bash
+cd backend
+npm start
+# Configure your reverse proxy to point to port 3001
 ```
+
+### Environment Setup
+- **Development**: Use `.env` files for configuration
+- **Production**: Set environment variables directly
+- **Security**: Never commit sensitive data to version control
 
 ## 🤝 Contributing
 
@@ -306,16 +288,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🆘 Support
 
 For issues and questions:
-1. Check the [Integration Guide](./INTEGRATION_GUIDE.md)
-2. Review the troubleshooting section
-3. Check server logs for error details
-4. Verify Discord bot permissions
-
-## 🎯 Certification
-
-Complete all training sections and pass the quiz (20/29 correct) to become a certified Void Esports moderator with automatic Discord role assignment.
+1. Check the troubleshooting section
+2. Review the API documentation
+3. Verify environment configuration
+4. Check console logs for errors
 
 ---
 
-**Void Esports Moderator Training System**  
-*Professional. Comprehensive. Automated.*
+**Void Esports Moderator Training Platform**  
+*Professional. Comprehensive. Modern.*
